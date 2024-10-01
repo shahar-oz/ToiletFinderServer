@@ -1,4 +1,4 @@
-﻿﻿Use master
+﻿Use master
 Go
 IF EXISTS (SELECT * FROM sys.databases WHERE name = N'ToiletFinder_DB')
 BEGIN
@@ -51,6 +51,18 @@ CREATE TABLE Reviews (
     FOREIGN KEY (ToiletId) REFERENCES CurrentToilets(ToiletId),  -- קישור לטבלת השירותים
 )
 
+-- Create a login for the admin user
+CREATE LOGIN [TaskAdminLogin] WITH PASSWORD = 'ShaharAdmin';
+Go
+
+-- Create a user in the TamiDB database for the login
+CREATE USER [TaskAdminUser] FOR LOGIN [TaskAdminLogin];
+Go
+
+-- Add the user to the db_owner role to grant admin privileges
+ALTER ROLE db_owner ADD MEMBER [TaskAdminUser];
+Go
+
 INSERT INTO UTypes Values('General')
 INSERT INTO UTypes Values('Service Provider')
 INSERT INTO UTypes Values('Sanitaion Maneger')
@@ -66,6 +78,13 @@ INSERT INTO Rates Values(3, 1)
 INSERT INTO Reviews Values('Fine. Not great.', 1)
 
 SELECT * FROM CurrentToilets
+SELECT * FROM UTypes
+SELECT * FROM Reviews
+SELECT * FROM Rates
+SELECT * FROM Users
 
-
+--EF Code
+/*
+scaffold-DbContext "Server = (localdb)\MSSQLLocalDB;Initial Catalog=ToiletFinder_DB;User ID=TaskAdminLogin;Password=ShaharAdmin;" Microsoft.EntityFrameworkCore.SqlServer -OutPutDir Models -Context ToiletDBContext -DataAnnotations -force
+*/
 
