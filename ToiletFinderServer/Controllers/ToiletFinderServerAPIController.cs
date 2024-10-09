@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ToiletFinderServer.Models;
 
@@ -18,5 +19,38 @@ namespace ToiletFinderServer.Controllers
             this.context = context;
             this.webHostEnvironment = env;
         }
+
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] DTO.UserDTO userDTO)
+        {
+            try
+            {
+                HttpContext.Session.Clear();
+                Models.User newUser = new User()
+                {
+                    Username = userDTO.Username,
+                    Email = userDTO.Email,
+                    Pass = userDTO.Password,
+                    PhoneNumber = userDTO.PhoneNumber,
+                    DateOfBirth = userDTO.DateOfBirth
+                };
+
+                context.Users.Add(newUser);
+                context.SaveChanges();
+
+                DTO.UserDTO dtoUser = new DTO.UserDTO(newUser);
+                return Ok(dtoUser);
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
     }
+
+     
+    
+
 }
