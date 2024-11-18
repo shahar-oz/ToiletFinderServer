@@ -21,9 +21,6 @@ public partial class User
     public string? Email { get; set; }
 
     [StringLength(100)]
-    public string? PhoneNumber { get; set; }
-
-    public DateOnly? DateOfBirth { get; set; }
 
     public int? UserType { get; set; }
 

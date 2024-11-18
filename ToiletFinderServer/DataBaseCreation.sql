@@ -21,9 +21,7 @@ CREATE TABLE Users (
     UserId INT PRIMARY KEY identity,           -- מפתח ראשי
     Username NVARCHAR(100),                    -- שם משתמש
     Pass NVARCHAR(100),                        -- סיסמא
-    Email NVARCHAR(100),                       -- מייל
-    PhoneNumber NVARCHAR(100),                 -- מספר טלפון
-    DateOfBirth DATE ,                         -- תאריך לידה של המשתמש
+    Email NVARCHAR(100) unique,                       -- מייל
     UserType INT                               -- מפתח משני, סוג משתמש 
       FOREIGN KEY (UserType) REFERENCES UTypes(UserType)   -- קישור לטבלת הסוגים
 )
@@ -68,15 +66,18 @@ INSERT INTO UTypes Values('Service Provider')
 INSERT INTO UTypes Values('Sanitaion Maneger')
 INSERT INTO UTypes Values('Admin')
 
-INSERT INTO Users Values('ShaharOz', 'ShaharOz1', 'shahar.oz@gmail.com', '054-5264648', '2007/08/29', 4)
-INSERT INTO Users Values('ShaharShalgi', 'Fluffy234', 'shahar.shalgi@gmail.com', '052-5381648', '2007/02/26', 1)
+GO
+
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('ShaharOz', 'ShaharOz1', 'shahar.oz@gmail.com',  4)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('ShaharShal', 'ShaharShal', 'shahar.shal@gmail.com',  1)
+Go
 
 INSERT INTO CurrentToilets Values('Baker Street 2, London', 0, 2)
-
+Go
 INSERT INTO Rates Values(3, 1)
-
+Go
 INSERT INTO Reviews Values('Fine. Not great.', 1)
-
+Go
 SELECT * FROM CurrentToilets
 SELECT * FROM UTypes
 SELECT * FROM Reviews

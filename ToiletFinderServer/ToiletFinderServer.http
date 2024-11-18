@@ -1,6 +1,0 @@
-@ToiletFinderServer_HostAddress = http://localhost:5159
-
-GET {{ToiletFinderServer_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
