@@ -1,16 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ToiletFinderServer.Models;
 
-namespace ToiletFinderServer.ModelsBL
+namespace ToiletFinderServer.Models
 {
-    public partial class ToiletDBContext : DbContext
-    {
-        public User? GetUser(string email)
+        public partial class ToiletDBContext : DbContext
         {
-            return this.Users.Where(u => u.UserEmail == email)
-                                .Include(u => u.UserTasks)
-                                .ThenInclude(t => t.TaskComments)
-                                .FirstOrDefault();
+            public User? GetUser(string email)
+            {
+                return this.Users.Where(u => u.Email == email).FirstOrDefault();
+            }
         }
     }
-}
+

@@ -1,9 +1,12 @@
-﻿namespace ToiletFinderServer.DTO
+﻿using ToiletFinderServer.Models;
+
+namespace ToiletFinderServer.DTO
 {
     public class RateDTO
     {
         public int? Rate1 {  get; set; }
         public int ToiletId {  get; set; }
+        public virtual CurrentToilet Toilet { get; set; } = null!;
 
         //public RateDTO() { }
         //public RateDTO(Models.Rate modelUser)

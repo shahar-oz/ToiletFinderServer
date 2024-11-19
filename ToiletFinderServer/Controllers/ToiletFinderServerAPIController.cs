@@ -23,7 +23,7 @@ namespace ToiletFinderServer.Controllers
             this.webHostEnvironment = env;
         }
         [HttpPost("login")]
-        public IActionResult Login([FromBody] DTO.UserDTO loginDto)
+        public IActionResult Login([FromBody] DTO.LogInDTO loginDto)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace ToiletFinderServer.Controllers
                 //Login suceed! now mark login in session memory!
                 HttpContext.Session.SetString("loggedInUser", modelsUser.Email);
 
-                DTO.UserDTO dtoUser = new DTO.UserDTO(modelsUser);
+                DTO.LogInDTO dtoUser = new DTO.LogInDTO(modelsUser);
                 return Ok(dtoUser);
             }
             catch (Exception ex)
@@ -49,20 +49,33 @@ namespace ToiletFinderServer.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpPost("signup")]
+        public IActionResult SignUp([FromBody] DTO.UserDTO userDto)
+        {
+            try
+            {
+                HttpContext.Session.Clear(); //Logout any previous login attempt
+
+                //Create model user class
+                Models.User modelsUser = userDto.GetModels();
+
+                context.Users.Add(modelsUser);
+                context.SaveChanges();
+
+                //User was added!
+                DTO.UserDTO dtoUser = new DTO.UserDTO(modelsUser);
+                return Ok(dtoUser);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
 
 
     }
 }
-//public partial class ToiletDBContext : DbContext
-//{
-//    public UserDTO? GetUser(string email)
-//    {
-//        return this.AppUsers.Where(u => u.UserEmail == email)
-//                            .Include(u => u.UserTasks)
-//                            .ThenInclude(t => t.TaskComments)
-//                            .FirstOrDefault();
-//    }
-//}
 
 
 
@@ -71,50 +84,6 @@ namespace ToiletFinderServer.Controllers
 
 
 
-//[Route("api/[controller]")]
-//[ApiController]
-//public class ToiletFinderServerAPIController : ControllerBase
-//{
-//       //a variable to hold a reference to the db context!
-//    private ToiletDBContext context;
-//    //a variable that hold a reference to web hosting interface (that provide information like the folder on which the server runs etc...)
-//    private IWebHostEnvironment webHostEnvironment;
-//    //Use dependency injection to get the db context and web host into the constructor
-//    public ToiletFinderServerAPIController(ToiletDBContext context, IWebHostEnvironment env)
-//    {
-//        this.context = context;
-//        this.webHostEnvironment = env;
-//    }
-
-//    [HttpPost("register")]
-//    public IActionResult Register([FromBody] DTO.UserDTO userDTO)
-//    {
-//        try
-//        {
-//            HttpContext.Session.Clear();
-//            Models.User newUser = new User()
-//            {
-//                Username = userDTO.Username,
-//                Email = userDTO.Email,
-//                Pass = userDTO.Password,
-//                PhoneNumber = userDTO.PhoneNumber,
-//                DateOfBirth = userDTO.DateOfBirth
-//            };
-
-//            context.Users.Add(newUser);
-//            context.SaveChanges();
-
-//            DTO.UserDTO dtoUser = new DTO.UserDTO(newUser);
-//            return Ok(dtoUser);
-//        }
-
-//        catch (Exception ex)
-//        {
-//            return BadRequest(ex.Message);
-//        }
-
-//    }
-//}
 
 
 
