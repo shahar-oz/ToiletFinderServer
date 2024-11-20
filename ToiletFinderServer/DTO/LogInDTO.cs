@@ -1,4 +1,4 @@
-﻿\namespace ToiletFinderServer.DTO
+﻿namespace ToiletFinderServer.DTO
 {
     public class LogInDTO
     {
