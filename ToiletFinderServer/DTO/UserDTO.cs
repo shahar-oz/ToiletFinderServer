@@ -15,6 +15,7 @@
             this.Password = modelUser.Pass;
             this.Email = modelUser.Email;
             this.UserType = modelUser.UserType;
+            this.UserId = modelUser.UserId;
 
         }
         public Models.User GetModels()

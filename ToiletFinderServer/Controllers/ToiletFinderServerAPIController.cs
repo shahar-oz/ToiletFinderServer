@@ -41,7 +41,7 @@ namespace ToiletFinderServer.Controllers
                 //Login suceed! now mark login in session memory!
                 HttpContext.Session.SetString("loggedInUser", modelsUser.Email);
 
-                DTO.LogInDTO dtoUser = new DTO.LogInDTO(modelsUser);
+                DTO.UserDTO dtoUser = new DTO.UserDTO(modelsUser);
                 return Ok(dtoUser);
             }
             catch (Exception ex)
