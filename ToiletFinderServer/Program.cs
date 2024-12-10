@@ -55,6 +55,7 @@ namespace ToiletFinderServer
             app.MapControllers(); //Map all controllers classes
 
             app.UseAuthorization();
+         
 
 
             app.MapControllers();
