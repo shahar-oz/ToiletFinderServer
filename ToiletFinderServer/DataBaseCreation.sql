@@ -32,8 +32,17 @@ CREATE TABLE CurrentToilets (
     TLocation NVARCHAR(100),                  -- מיקום
     Accessibility BIT,                        -- נגישות
     Price FLOAT,                              -- מחיר
-    --ToiletPictures VARBINARY(MAX)             -- תמונות
+
 )
+
+-- יצירת טבלת תמונות של שירותים קיימים  
+CREATE TABLE CurrentToiletsPhotos (
+    PhotoId INT PRIMARY KEY identity,        -- מפתח ראשי
+    ToiletId INT FOREIGN KEY REFERENCES CurrentToilets(ToiletId),        -- מפתח משני
+    
+
+)
+
 
 -- יצירת טבלת דירוגים
 CREATE TABLE Rates (
@@ -83,6 +92,7 @@ SELECT * FROM UTypes
 SELECT * FROM Reviews
 SELECT * FROM Rates
 SELECT * FROM Users
+select * from CurrentToiletsPhotos
 
 --EF Code
 /*

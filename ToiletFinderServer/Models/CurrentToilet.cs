@@ -20,6 +20,9 @@ public partial class CurrentToilet
     public double? Price { get; set; }
 
     [InverseProperty("Toilet")]
+    public virtual ICollection<CurrentToiletsPhoto> CurrentToiletsPhotos { get; set; } = new List<CurrentToiletsPhoto>();
+
+    [InverseProperty("Toilet")]
     public virtual Rate? Rate { get; set; }
 
     [InverseProperty("Toilet")]

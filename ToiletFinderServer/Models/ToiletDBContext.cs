@@ -17,6 +17,8 @@ public partial class ToiletDBContext : DbContext
 
     public virtual DbSet<CurrentToilet> CurrentToilets { get; set; }
 
+    public virtual DbSet<CurrentToiletsPhoto> CurrentToiletsPhotos { get; set; }
+
     public virtual DbSet<Rate> Rates { get; set; }
 
     public virtual DbSet<Review> Reviews { get; set; }
@@ -33,41 +35,48 @@ public partial class ToiletDBContext : DbContext
     {
         modelBuilder.Entity<CurrentToilet>(entity =>
         {
-            entity.HasKey(e => e.ToiletId).HasName("PK__CurrentT__A922EA2D2F282332");
+            entity.HasKey(e => e.ToiletId).HasName("PK__CurrentT__A922EA2D9AE2201B");
+        });
+
+        modelBuilder.Entity<CurrentToiletsPhoto>(entity =>
+        {
+            entity.HasKey(e => e.PhotoId).HasName("PK__CurrentT__21B7B5E264F79346");
+
+            entity.HasOne(d => d.Toilet).WithMany(p => p.CurrentToiletsPhotos).HasConstraintName("FK__CurrentTo__Toile__2C3393D0");
         });
 
         modelBuilder.Entity<Rate>(entity =>
         {
-            entity.HasKey(e => e.ToiletId).HasName("PK__Rates__A922EA0D9D93F948");
+            entity.HasKey(e => e.ToiletId).HasName("PK__Rates__A922EA0D48F40265");
 
             entity.Property(e => e.ToiletId).ValueGeneratedNever();
 
             entity.HasOne(d => d.Toilet).WithOne(p => p.Rate)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Rates__ToiletID__2B3F6F97");
+                .HasConstraintName("FK__Rates__ToiletID__2F10007B");
         });
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.ToiletId).HasName("PK__Reviews__A922EA0D31C6EE3D");
+            entity.HasKey(e => e.ToiletId).HasName("PK__Reviews__A922EA0DB7678212");
 
             entity.Property(e => e.ToiletId).ValueGeneratedNever();
 
             entity.HasOne(d => d.Toilet).WithOne(p => p.Review)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reviews__ToiletI__2E1BDC42");
+                .HasConstraintName("FK__Reviews__ToiletI__31EC6D26");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4CD593A325");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4C6FD8D743");
 
-            entity.HasOne(d => d.UserTypeNavigation).WithMany(p => p.Users).HasConstraintName("FK__Users__UserType__267ABA7A");
+            entity.HasOne(d => d.UserTypeNavigation).WithMany(p => p.Users).HasConstraintName("FK__Users__UserType__276EDEB3");
         });
 
         modelBuilder.Entity<Utype>(entity =>
         {
-            entity.HasKey(e => e.UserType).HasName("PK__UTypes__87E786907A54AFAC");
+            entity.HasKey(e => e.UserType).HasName("PK__UTypes__87E78690221B75AF");
         });
 
         OnModelCreatingPartial(modelBuilder);
