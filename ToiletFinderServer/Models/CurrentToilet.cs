@@ -19,6 +19,9 @@ public partial class CurrentToilet
 
     public double? Price { get; set; }
 
+    [Column("StatusID")]
+    public int? StatusId { get; set; }
+
     [InverseProperty("Toilet")]
     public virtual ICollection<CurrentToiletsPhoto> CurrentToiletsPhotos { get; set; } = new List<CurrentToiletsPhoto>();
 
@@ -27,4 +30,8 @@ public partial class CurrentToilet
 
     [InverseProperty("Toilet")]
     public virtual Review? Review { get; set; }
+
+    [ForeignKey("StatusId")]
+    [InverseProperty("CurrentToilets")]
+    public virtual Status? Status { get; set; }
 }

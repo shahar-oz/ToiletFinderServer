@@ -16,6 +16,13 @@ CREATE TABLE UTypes (
     TypeName NVARCHAR(100)                    -- שם של הסוג
 )
 
+--יצירת טבלת סטטוס
+CREATE TABLE Statuses(
+StatusID INT PRIMARY KEY,
+StatusDesc NVARCHAR (50)
+);
+
+
 -- יצירת טבלת משתמשים
 CREATE TABLE Users (
     UserId INT PRIMARY KEY identity,           -- מפתח ראשי
@@ -32,6 +39,8 @@ CREATE TABLE CurrentToilets (
     TLocation NVARCHAR(100),                  -- מיקום
     Accessibility BIT,                        -- נגישות
     Price FLOAT,                              -- מחיר
+    StatusID INT,                                      -- מפתח משני, סטטוס
+FOREIGN KEY (StatusID) REFERENCES Statuses(StatusID)
 
 )
 
@@ -75,13 +84,23 @@ INSERT INTO UTypes Values('Service Provider')
 INSERT INTO UTypes Values('Sanitaion Maneger')
 INSERT INTO UTypes Values('Admin')
 
+Go
+
+INSERT INTO Statuses Values('Approved')
+INSERT INTO Statuses Values('Pending')
+INSERT INTO Statuses Values('Declined')
+
+
 GO
 
-INSERT INTO Users (Username, Pass, Email, UserType)  Values ('ShaharOz', 'ShaharOz1', 'shahar.oz@gmail.com',  4)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Admin', 'Admin123', 'admin@gmail.com',  4)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Service', 'Service123', 'service@gmail.com',  2)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('ShaharShal', 'ShaharShal', 'shahar.shal@gmail.com',  1)
 Go
 
-INSERT INTO CurrentToilets Values('Baker Street 2, London', 0, 2)
+INSERT INTO CurrentToilets Values('Baker Street 2, London', 0, 2, 1)
+INSERT INTO CurrentToilets Values('Ramataim 21, Hod Hasharon', 0, 2, 2)
+INSERT INTO CurrentToilets Values('Ahuza 14, Rannana', 0, 2, 2)
 Go
 INSERT INTO Rates Values(3, 1)
 Go

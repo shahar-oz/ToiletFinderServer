@@ -90,6 +90,8 @@ namespace ToiletFinderServer.Controllers
                 //Create model user class
                 Models.CurrentToilet modelsToilet = toiletDto.GetModels();
 
+                modelsToilet.StatusId = 2;
+
                 context.CurrentToilets.Add(modelsToilet);
                 context.SaveChanges();
 

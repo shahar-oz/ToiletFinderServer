@@ -8,6 +8,7 @@ namespace ToiletFinderServer.DTO
         public string? Tlocation { get; set; }
         public bool? Accessibility { get; set; }
         public double? Price { get; set; }
+        public int? StatusID { get; set; }
         //public Rate? Rate { get; set; }
         //public Review? Review { get; set; }
 
@@ -23,6 +24,7 @@ namespace ToiletFinderServer.DTO
             m.Tlocation = Tlocation;
             m.Accessibility = Accessibility;
             m.Price = Price;
+            m.StatusId = StatusID;
             //m.Rate = Rate;
             //m.Review = Review;
             m.CurrentToiletsPhotos = new List<Models.CurrentToiletsPhoto>();
@@ -45,6 +47,7 @@ namespace ToiletFinderServer.DTO
             this.Tlocation = modelToilet.Tlocation;
             this.Accessibility = modelToilet.Accessibility;
             this.Price = modelToilet.Price;
+            this.StatusID = modelToilet.StatusId;
             //this.Rate = modelToilet.Rate;
             //this.Review = modelToilet.Review;
             this.Photos = new List<CurrentToiletPhotoDTO>();
