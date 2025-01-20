@@ -34,7 +34,7 @@ namespace ToiletFinderServer.Controllers
                 Models.User? modelsUser = context.GetUser(loginDto.Email);
 
                 //Check if user exist for this email and if password match, if not return Access Denied (Error 403) 
-                if (modelsUser == null || modelsUser.Pass != loginDto.Password || modelsUser.Email!=loginDto.Email)
+                if (modelsUser == null || modelsUser.Pass != loginDto.Password || modelsUser.Email != loginDto.Email)
                 {
                     return Unauthorized();
                 }
@@ -80,7 +80,7 @@ namespace ToiletFinderServer.Controllers
             try
             {
                 //Check if user is logged int
-                string? email = HttpContext.Session.GetString("loggedInUser"); 
+                string? email = HttpContext.Session.GetString("loggedInUser");
 
                 if (email == null || email == "")
                 {
@@ -207,8 +207,40 @@ namespace ToiletFinderServer.Controllers
 
             return false;
         }
-    }
+
+        [HttpPost("addSanitMan")]
+        public IActionResult AddSanitMan([FromBody] DTO.SanitmanDTO sanitDto)
+        {
+            try
+            {
+                //check if user is looged in
+                string? email = HttpContext.Session.GetString("loggedInUser");
+
+                if (email == null || email == "")
+                {
+                    return Unauthorized();
+                }
+                //Create model sanit class
+                Models.Sanitman modelsSanit = sanitDto.GetModels();
+
+                
+
+                context.Sanitmen.Add(modelsSanit);
+                context.SaveChanges();
+                //Sanitationmaneger was added!
+                DTO.SanitmanDTO dtoSanit = new DTO.SanitmanDTO(modelsSanit);
+                return Ok(dtoSanit);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        
+        }
 }
+    }
+
 
 
 

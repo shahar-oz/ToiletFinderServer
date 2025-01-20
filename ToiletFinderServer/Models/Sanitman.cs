@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ToiletFinderServer.Models;
 
-[Index("Email", Name = "UQ__Users__A9D105340BF3578A", IsUnique = true)]
-public partial class User
+[Table("Sanitman")]
+public partial class Sanitman
 {
-    [Key]
-    public int UserId { get; set; }
+    [StringLength(100)]
+    public string? Servicezone { get; set; }
 
     [StringLength(100)]
     public string? Username { get; set; }
@@ -18,12 +18,7 @@ public partial class User
     [StringLength(100)]
     public string? Pass { get; set; }
 
+    [Key]
     [StringLength(100)]
-    public string? Email { get; set; }
-
-    public int? UserType { get; set; }
-
-    [ForeignKey("UserType")]
-    [InverseProperty("Users")]
-    public virtual Utype? UserTypeNavigation { get; set; }
+    public string Email { get; set; } = null!;
 }

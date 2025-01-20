@@ -13,7 +13,7 @@ public partial class Status
     public int StatusId { get; set; }
 
     [StringLength(50)]
-    public string? StatusDesc { get; set; }
+    public string StatusDesc { get; set; } = null!;
 
     [InverseProperty("Status")]
     public virtual ICollection<CurrentToilet> CurrentToilets { get; set; } = new List<CurrentToilet>();

@@ -19,8 +19,8 @@ CREATE TABLE UTypes (
 --יצירת טבלת סטטוס
 CREATE TABLE Statuses(
 StatusID INT PRIMARY KEY,
-StatusDesc NVARCHAR (50)
-);
+StatusDesc NVARCHAR (50) Not Null
+)
 
 
 -- יצירת טבלת משתמשים
@@ -31,6 +31,14 @@ CREATE TABLE Users (
     Email NVARCHAR(100) unique,                       -- מייל
     UserType INT                               -- מפתח משני, סוג משתמש 
       FOREIGN KEY (UserType) REFERENCES UTypes(UserType)   -- קישור לטבלת הסוגים
+)
+
+-- יצירת טבלת מנהל תברואה
+CREATE TABLE Sanitman (
+    Servicezone NVARCHAR(100),                 -- איזור שירות
+    Username NVARCHAR(100),                    -- שם משתמש
+    Pass NVARCHAR(100),                        -- סיסמא
+    Email NVARCHAR(100) PRIMARY KEY,                       --  מפתח ראשי מייל
 )
 
 -- יצירת טבלת שירותים קיימים  
@@ -79,23 +87,24 @@ Go
 ALTER ROLE db_owner ADD MEMBER [TaskAdminUser];
 Go
 
-INSERT INTO UTypes Values('General')
-INSERT INTO UTypes Values('Service Provider')
-INSERT INTO UTypes Values('Sanitaion Maneger')
-INSERT INTO UTypes Values('Admin')
+INSERT INTO UTypes Values( 'General')
+INSERT INTO UTypes Values( 'Service Provider')
+INSERT INTO UTypes Values( 'Admin')
 
 Go
 
-INSERT INTO Statuses Values('Approved')
-INSERT INTO Statuses Values('Pending')
-INSERT INTO Statuses Values('Declined')
+INSERT INTO Statuses Values(1, 'Approved')
+INSERT INTO Statuses Values(2, 'Pending')
+INSERT INTO Statuses Values(3, 'Declined')
 
 
 GO
 
-INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Admin', 'Admin123', 'admin@gmail.com',  4)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Admin', 'Admin123', 'admin@gmail.com',  3)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Service', 'Service123', 'service@gmail.com',  2)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('ShaharShal', 'ShaharShal', 'shahar.shal@gmail.com',  1)
+INSERT INTO Sanitman (Servicezone, Username, Pass, Email)  Values ('Hasharon', 'Sanit','San123', 'sanit.man@gmail.com')
+
 Go
 
 INSERT INTO CurrentToilets Values('Baker Street 2, London', 0, 2, 1)
@@ -112,6 +121,7 @@ SELECT * FROM Reviews
 SELECT * FROM Rates
 SELECT * FROM Users
 select * from CurrentToiletsPhotos
+select * from Sanitman
 
 --EF Code
 /*
