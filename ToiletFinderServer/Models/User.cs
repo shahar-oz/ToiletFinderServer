@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ToiletFinderServer.Models;
 
-[Index("Email", Name = "UQ__Users__A9D105340BF3578A", IsUnique = true)]
+[Index("Email", Name = "UQ__Users__A9D1053400D4FEA9", IsUnique = true)]
 public partial class User
 {
     [Key]

@@ -208,36 +208,7 @@ namespace ToiletFinderServer.Controllers
             return false;
         }
 
-        [HttpPost("addSanitMan")]
-        public IActionResult AddSanitMan([FromBody] DTO.SanitmanDTO sanitDto)
-        {
-            try
-            {
-                //check if user is looged in
-                string? email = HttpContext.Session.GetString("loggedInUser");
-
-                if (email == null || email == "")
-                {
-                    return Unauthorized();
-                }
-                //Create model sanit class
-                Models.Sanitman modelsSanit = sanitDto.GetModels();
-
-                
-
-                context.Sanitmen.Add(modelsSanit);
-                context.SaveChanges();
-                //Sanitationmaneger was added!
-                DTO.SanitmanDTO dtoSanit = new DTO.SanitmanDTO(modelsSanit);
-                return Ok(dtoSanit);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
         
-        }
 }
     }
 

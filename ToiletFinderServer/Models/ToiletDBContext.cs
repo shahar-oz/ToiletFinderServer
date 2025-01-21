@@ -39,21 +39,21 @@ public partial class ToiletDBContext : DbContext
     {
         modelBuilder.Entity<CurrentToilet>(entity =>
         {
-            entity.HasKey(e => e.ToiletId).HasName("PK__CurrentT__A922EA2D743A3EA6");
+            entity.HasKey(e => e.ToiletId).HasName("PK__CurrentT__A922EA2D6BF35460");
 
             entity.HasOne(d => d.Status).WithMany(p => p.CurrentToilets).HasConstraintName("FK__CurrentTo__Statu__2E1BDC42");
         });
 
         modelBuilder.Entity<CurrentToiletsPhoto>(entity =>
         {
-            entity.HasKey(e => e.PhotoId).HasName("PK__CurrentT__21B7B5E2ADB81DA7");
+            entity.HasKey(e => e.PhotoId).HasName("PK__CurrentT__21B7B5E2ED5036A7");
 
             entity.HasOne(d => d.Toilet).WithMany(p => p.CurrentToiletsPhotos).HasConstraintName("FK__CurrentTo__Toile__30F848ED");
         });
 
         modelBuilder.Entity<Rate>(entity =>
         {
-            entity.HasKey(e => e.ToiletId).HasName("PK__Rates__A922EA0DE0FA4ECF");
+            entity.HasKey(e => e.ToiletId).HasName("PK__Rates__A922EA0DCD586438");
 
             entity.Property(e => e.ToiletId).ValueGeneratedNever();
 
@@ -64,7 +64,7 @@ public partial class ToiletDBContext : DbContext
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.ToiletId).HasName("PK__Reviews__A922EA0DA8E1D0EB");
+            entity.HasKey(e => e.ToiletId).HasName("PK__Reviews__A922EA0D891785C5");
 
             entity.Property(e => e.ToiletId).ValueGeneratedNever();
 
@@ -75,26 +75,26 @@ public partial class ToiletDBContext : DbContext
 
         modelBuilder.Entity<Sanitman>(entity =>
         {
-            entity.HasKey(e => e.Email).HasName("PK__Sanitman__A9D10535C3168626");
+            entity.HasKey(e => e.Email).HasName("PK__Sanitman__A9D105354D79EFE3");
         });
 
         modelBuilder.Entity<Status>(entity =>
         {
-            entity.HasKey(e => e.StatusId).HasName("PK__Statuses__C8EE20439DB21347");
+            entity.HasKey(e => e.StatusId).HasName("PK__Statuses__C8EE2043B32774C3");
 
             entity.Property(e => e.StatusId).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4CE2050010");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4C657253AC");
 
             entity.HasOne(d => d.UserTypeNavigation).WithMany(p => p.Users).HasConstraintName("FK__Users__UserType__29572725");
         });
 
         modelBuilder.Entity<Utype>(entity =>
         {
-            entity.HasKey(e => e.UserType).HasName("PK__UTypes__87E78690778B289D");
+            entity.HasKey(e => e.UserType).HasName("PK__UTypes__87E786904FA4C81E");
         });
 
         OnModelCreatingPartial(modelBuilder);

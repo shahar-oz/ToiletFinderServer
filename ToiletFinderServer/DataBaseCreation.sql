@@ -33,13 +33,6 @@ CREATE TABLE Users (
       FOREIGN KEY (UserType) REFERENCES UTypes(UserType)   -- קישור לטבלת הסוגים
 )
 
--- יצירת טבלת מנהל תברואה
-CREATE TABLE Sanitman (
-    Servicezone NVARCHAR(100),                 -- איזור שירות
-    Username NVARCHAR(100),                    -- שם משתמש
-    Pass NVARCHAR(100),                        -- סיסמא
-    Email NVARCHAR(100) PRIMARY KEY,                       --  מפתח ראשי מייל
-)
 
 -- יצירת טבלת שירותים קיימים  
 CREATE TABLE CurrentToilets (
@@ -90,6 +83,7 @@ Go
 INSERT INTO UTypes Values( 'General')
 INSERT INTO UTypes Values( 'Service Provider')
 INSERT INTO UTypes Values( 'Admin')
+INSERT INTO UTypes Values( 'Sanitation')
 
 Go
 
@@ -101,9 +95,9 @@ INSERT INTO Statuses Values(3, 'Declined')
 GO
 
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Admin', 'Admin123', 'admin@gmail.com',  3)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('1', '1', '1',  3)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Service', 'Service123', 'service@gmail.com',  2)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('ShaharShal', 'ShaharShal', 'shahar.shal@gmail.com',  1)
-INSERT INTO Sanitman (Servicezone, Username, Pass, Email)  Values ('Hasharon', 'Sanit','San123', 'sanit.man@gmail.com')
 
 Go
 
