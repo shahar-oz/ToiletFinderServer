@@ -208,9 +208,25 @@ namespace ToiletFinderServer.Controllers
             return false;
         }
 
+       
+        [HttpGet("GetAllApprovedToilets")]
+        public IActionResult GetAllApprovedToilets()
+        {
+            try
+            {
+                List<Models.CurrentToilet> listApprovedToilets = context.GetAllApprovedToilets();
+                return Ok(listApprovedToilets);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         
-}
+
+
     }
+}
 
 
 

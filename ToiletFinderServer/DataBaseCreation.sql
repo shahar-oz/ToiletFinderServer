@@ -104,6 +104,15 @@ Go
 INSERT INTO CurrentToilets Values('Baker Street 2, London', 0, 2, 1)
 INSERT INTO CurrentToilets Values('Ramataim 21, Hod Hasharon', 0, 2, 2)
 INSERT INTO CurrentToilets Values('Ahuza 14, Rannana', 0, 2, 2)
+INSERT INTO CurrentToilets Values('Habanim 12, Hod Hasharon', 0, 2, 2)
+INSERT INTO CurrentToilets Values('Gaza 23, Jerusalem', 1, 2, 1)
+INSERT INTO CurrentToilets Values('Jaffa 14, Tel Aviv', 0, 2, 1)
+INSERT INTO CurrentToilets Values('Namir 133, Jerusalem', 0, 2, 1)
+INSERT INTO CurrentToilets Values('Begin 81, Tel Aviv', 1, 1.5, 1)
+INSERT INTO CurrentToilets Values('Shamir 123, Jerusalem', 0, 2, 1)
+INSERT INTO CurrentToilets Values('Hamered 13, Tel Aviv', 0, 0, 1)
+INSERT INTO CurrentToilets Values('Balfur 23, Jerusalem', 0, 4, 1)
+
 Go
 INSERT INTO Rates Values(3, 1)
 Go
