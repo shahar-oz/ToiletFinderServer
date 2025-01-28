@@ -79,7 +79,7 @@ namespace ToiletFinderServer.Controllers
         {
             try
             {
-                //Check if user is logged int
+                //Check if user is logged in
                 string? email = HttpContext.Session.GetString("loggedInUser");
 
                 if (email == null || email == "")
@@ -222,7 +222,92 @@ namespace ToiletFinderServer.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        
+
+        [HttpGet("GetAllPendingToilets")]
+        public IActionResult GetAllPendingToilets()
+        {
+            try
+            {
+                List<Models.CurrentToilet> listApprovedToilets = context.GetAllPendingToilets();
+                return Ok(listApprovedToilets);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetAllDeclinedToilets")]
+        public IActionResult GetAllDeclinedToilets()
+        {
+            try
+            {
+                List<Models.CurrentToilet> listApprovedToilets = context.GetAllDeclinedToilets();
+                return Ok(listApprovedToilets);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        #region Change Status 
+        //change status
+        [HttpPost("ChangeStatusToApprove")]
+        public IActionResult ChangeStatusToApprove(DTO.CurrentToiletDTO toiletDTO)
+        {
+            try
+            {
+                //validate its an admin
+                string? email = HttpContext.Session.GetString("loggedInUser");
+
+                if (email == null || email == "")
+                {
+                    return Unauthorized();
+                }
+                User? u = context.GetUser(email);
+                if (u == null || u.UserType != 3)
+                    return Unauthorized();
+
+                bool success = context.SetStatus(toiletDTO.ToiletId, 1);
+                if (success)
+                    return Ok(success);
+                else
+                    return BadRequest("Either toiletID not found or DB connection problem!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("ChangStatusToDecline")]
+        public IActionResult ChangStatusToDecline(DTO.CurrentToiletDTO toiletDTO)
+        {
+            try
+            {
+                //validate its an admin
+                string? email = HttpContext.Session.GetString("loggedInUser");
+
+                if (email == null || email == "")
+                {
+                    return Unauthorized();
+                }
+                User? u = context.GetUser(email);
+                if (u == null || u.UserType != 3)
+                    return Unauthorized();
+
+                bool success = context.SetStatus(toiletDTO.ToiletId, 3);
+                if (success)
+                    return Ok(success);
+                else
+                    return BadRequest("Either toiletID not found or DB connection problem!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        #endregion
 
 
     }

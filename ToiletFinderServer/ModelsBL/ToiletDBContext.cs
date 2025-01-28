@@ -27,6 +27,34 @@ namespace ToiletFinderServer.Models
         {
             return this.CurrentToilets.Where(u => u.StatusId == 1).ToList();
         }
+        public List<CurrentToilet>? GetAllPendingToilets()
+        {
+            return this.CurrentToilets.Where(u => u.StatusId == 2).ToList();
+        }
+        public List<CurrentToilet>? GetAllDeclinedToilets()
+        {
+            return this.CurrentToilets.Where(u => u.StatusId == 3).ToList();
+        }
+        public bool SetStatus(int toiletId, int statusId)
+        {
+            try
+            {
+                CurrentToilet? t = this.CurrentToilets.Where(t => t.ToiletId == toiletId).FirstOrDefault();
+                if (t != null)
+                {
+                    t.StatusId = statusId;
+                    this.Update(t);
+                    this.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
 
         //gets all toilets
         public List<CurrentToilet>? GetAllToilets()

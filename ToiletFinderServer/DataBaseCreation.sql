@@ -112,6 +112,9 @@ INSERT INTO CurrentToilets Values('Begin 81, Tel Aviv', 1, 1.5, 1)
 INSERT INTO CurrentToilets Values('Shamir 123, Jerusalem', 0, 2, 1)
 INSERT INTO CurrentToilets Values('Hamered 13, Tel Aviv', 0, 0, 1)
 INSERT INTO CurrentToilets Values('Balfur 23, Jerusalem', 0, 4, 1)
+INSERT INTO CurrentToilets Values('Hamacabim 14, Modiin', 0, 0, 3)
+INSERT INTO CurrentToilets Values('Ganot 12, Rishon', 1, 1, 3)
+INSERT INTO CurrentToilets Values('Navon 2, Yavne', 0, 2, 3)
 
 Go
 INSERT INTO Rates Values(3, 1)
