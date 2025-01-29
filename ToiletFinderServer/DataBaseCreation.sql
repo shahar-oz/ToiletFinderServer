@@ -83,7 +83,6 @@ Go
 INSERT INTO UTypes Values( 'General')
 INSERT INTO UTypes Values( 'Service Provider')
 INSERT INTO UTypes Values( 'Admin')
-INSERT INTO UTypes Values( 'Sanitation')
 
 Go
 
@@ -97,6 +96,9 @@ GO
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Admin', 'Admin123', 'admin@gmail.com',  3)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('1', '1', '1',  3)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Service', 'Service123', 'service@gmail.com',  2)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Service2', 'Service234', '2',  2)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Service3', 'Service345', 'service2@gmail.com',  2)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('User1', 'User1', 'User1',  1)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('ShaharShal', 'ShaharShal', 'shahar.shal@gmail.com',  1)
 
 Go
@@ -127,7 +129,7 @@ SELECT * FROM Reviews
 SELECT * FROM Rates
 SELECT * FROM Users
 select * from CurrentToiletsPhotos
-select * from Sanitman
+
 
 --EF Code
 /*
