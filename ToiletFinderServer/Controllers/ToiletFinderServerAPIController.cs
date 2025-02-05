@@ -215,7 +215,13 @@ namespace ToiletFinderServer.Controllers
             try
             {
                 List<Models.CurrentToilet> listApprovedToilets = context.GetAllApprovedToilets();
-                return Ok(listApprovedToilets);
+                List<CurrentToiletDTO> output = new List<CurrentToiletDTO>();
+                foreach (Models.CurrentToilet t in listApprovedToilets)
+                {
+                    output.Add(new CurrentToiletDTO(t, this.webHostEnvironment.WebRootPath));
+                }
+                return Ok(output);
+            
             }
             catch (Exception ex)
             {
@@ -229,7 +235,12 @@ namespace ToiletFinderServer.Controllers
             try
             {
                 List<Models.CurrentToilet> listApprovedToilets = context.GetAllPendingToilets();
-                return Ok(listApprovedToilets);
+                List<CurrentToiletDTO> output = new List<CurrentToiletDTO>();
+                foreach(Models.CurrentToilet t in  listApprovedToilets)
+                {
+                    output.Add(new CurrentToiletDTO(t, this.webHostEnvironment.WebRootPath));
+                }
+                return Ok(output);
             }
             catch (Exception ex)
             {
@@ -243,8 +254,14 @@ namespace ToiletFinderServer.Controllers
             try
             {
                 List<Models.CurrentToilet> listApprovedToilets = context.GetAllDeclinedToilets();
-                return Ok(listApprovedToilets);
+                List<CurrentToiletDTO> output = new List<CurrentToiletDTO>();
+                foreach (Models.CurrentToilet t in listApprovedToilets)
+                {
+                    output.Add(new CurrentToiletDTO(t, this.webHostEnvironment.WebRootPath));
+                }
+                return Ok(output);
             }
+               
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);

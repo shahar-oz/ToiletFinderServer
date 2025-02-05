@@ -25,15 +25,15 @@ namespace ToiletFinderServer.Models
         //gets all approved toilets
         public List<CurrentToilet>? GetAllApprovedToilets()
         {
-            return this.CurrentToilets.Where(u => u.StatusId == 1).ToList();
+            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Where(u => u.StatusId == 1).ToList();
         }
         public List<CurrentToilet>? GetAllPendingToilets()
         {
-            return this.CurrentToilets.Where(u => u.StatusId == 2).ToList();
+            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Where(u => u.StatusId == 2).ToList();
         }
         public List<CurrentToilet>? GetAllDeclinedToilets()
         {
-            return this.CurrentToilets.Where(u => u.StatusId == 3).ToList();
+            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Where(u => u.StatusId == 3).ToList();
         }
         public bool SetStatus(int toiletId, int statusId)
         {
