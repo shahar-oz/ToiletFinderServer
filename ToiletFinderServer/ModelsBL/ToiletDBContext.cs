@@ -56,11 +56,15 @@ namespace ToiletFinderServer.Models
 
         }
 
+        
+
         //gets all toilets
         public List<CurrentToilet>? GetAllToilets()
         {
             return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).ToList();
         }
+
+        
     }
-    }
+}
 
