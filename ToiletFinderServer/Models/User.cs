@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ToiletFinderServer.Models;
 
-[Index("Email", Name = "UQ__Users__A9D1053400D4FEA9", IsUnique = true)]
+[Index("Email", Name = "UQ__Users__A9D1053424FD8580", IsUnique = true)]
 public partial class User
 {
     [Key]
@@ -22,6 +22,9 @@ public partial class User
     public string? Email { get; set; }
 
     public int? UserType { get; set; }
+
+    [InverseProperty("User")]
+    public virtual ICollection<CurrentToilet> CurrentToilets { get; set; } = new List<CurrentToilet>();
 
     [ForeignKey("UserType")]
     [InverseProperty("Users")]

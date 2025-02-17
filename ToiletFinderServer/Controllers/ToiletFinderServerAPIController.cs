@@ -267,6 +267,31 @@ namespace ToiletFinderServer.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        //[HttpGet("GetToiletByUser")]
+        //public IActionResult GetToiletByUser([FromQuery] int userID)
+        //{
+        //    try
+        //    {
+        //        //validate its a service provider 
+        //        string? username = HttpContext.Session.GetString("loggedInUser");
+        //        if (username == null)
+        //            return Unauthorized();
+        //        User? u = context.GetUser(username);
+        //        if (u == null || u.UserId != 2)
+        //            return Unauthorized();
+        //        List<Models.CurrentToilet> listToilets = context.GetToiletByUser(userID);
+        //        List<DTO.CurrentToiletDTO> final = new List<CurrentToiletDTO>();
+               
+        //        return Ok(final);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+
+        //}
+
         #region Change Status 
         //change status
         [HttpPost("ChangeStatusToApprove")]

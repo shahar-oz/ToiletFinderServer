@@ -56,7 +56,10 @@ namespace ToiletFinderServer.Models
 
         }
 
-        
+        public List<CurrentToilet?> GetToiletByUser(int userID)
+        {
+            return this.CurrentToilets.Where(r => r.UserId == userID).ToList();
+        }
 
         //gets all toilets
         public List<CurrentToilet>? GetAllToilets()

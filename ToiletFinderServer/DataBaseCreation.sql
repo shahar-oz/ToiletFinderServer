@@ -41,7 +41,9 @@ CREATE TABLE CurrentToilets (
     Accessibility BIT,                        -- נגישות
     Price FLOAT,                              -- מחיר
     StatusID INT,                                      -- מפתח משני, סטטוס
-FOREIGN KEY (StatusID) REFERENCES Statuses(StatusID)
+FOREIGN KEY (StatusID) REFERENCES Statuses(StatusID),
+  UserId INT,
+    FOREIGN KEY (UserId) REFERENCES Users(UserId)
 
 )
 
@@ -95,28 +97,28 @@ GO
 
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Admin', 'Admin123', 'admin@gmail.com',  3)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('1', '1', '1',  3)
-INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Service', 'Service123', 'service@gmail.com',  2)
-INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Service2', 'Service234', '2',  2)
-INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Service3', 'Service345', 'service2@gmail.com',  2)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('SP', 'SP', 'SP',  2)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('SP2', 'SP2', 'SP2',  2)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('SP3', 'SP3', 'SP3',  2)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('User1', 'User1', 'User1',  1)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('ShaharShal', 'ShaharShal', 'shahar.shal@gmail.com',  1)
 
 Go
 
-INSERT INTO CurrentToilets Values('Baker Street 2, London', 0, 2, 1)
-INSERT INTO CurrentToilets Values('Ramataim 21, Hod Hasharon', 0, 2, 2)
-INSERT INTO CurrentToilets Values('Ahuza 14, Rannana', 0, 2, 2)
-INSERT INTO CurrentToilets Values('Habanim 12, Hod Hasharon', 0, 2, 2)
-INSERT INTO CurrentToilets Values('Gaza 23, Jerusalem', 1, 2, 1)
-INSERT INTO CurrentToilets Values('Jaffa 14, Tel Aviv', 0, 2, 1)
-INSERT INTO CurrentToilets Values('Namir 133, Jerusalem', 0, 2, 1)
-INSERT INTO CurrentToilets Values('Begin 81, Tel Aviv', 1, 1.5, 2)
-INSERT INTO CurrentToilets Values('Shamir 123, Jerusalem', 0, 2, 1)
-INSERT INTO CurrentToilets Values('Hamered 13, Tel Aviv', 0, 0, 2)
-INSERT INTO CurrentToilets Values('Balfur 23, Jerusalem', 0, 4, 1)
-INSERT INTO CurrentToilets Values('Hamacabim 14, Modiin', 0, 0, 3)
-INSERT INTO CurrentToilets Values('Ganot 12, Rishon', 1, 1, 3)
-INSERT INTO CurrentToilets Values('Navon 2, Yavne', 0, 2, 3)
+INSERT INTO CurrentToilets Values('Baker Street 2, London', 0, 2, 1,5)
+INSERT INTO CurrentToilets Values('Ramataim 21, Hod Hasharon', 0, 2, 2,3)
+INSERT INTO CurrentToilets Values('Ahuza 14, Rannana', 0, 2, 2,4)
+INSERT INTO CurrentToilets Values('Habanim 12, Hod Hasharon', 0, 2, 2,3)
+INSERT INTO CurrentToilets Values('Gaza 23, Jerusalem', 1, 2, 1,5)
+INSERT INTO CurrentToilets Values('Jaffa 14, Tel Aviv', 0, 2, 1,4)
+INSERT INTO CurrentToilets Values('Namir 133, Jerusalem', 0, 2, 1,5)
+INSERT INTO CurrentToilets Values('Begin 81, Tel Aviv', 1, 1.5, 2,4)
+INSERT INTO CurrentToilets Values('Shamir 123, Jerusalem', 0, 2, 1,5)
+INSERT INTO CurrentToilets Values('Hamered 13, Tel Aviv', 0, 0, 2,4)
+INSERT INTO CurrentToilets Values('Balfur 23, Jerusalem', 0, 4, 1,5)
+INSERT INTO CurrentToilets Values('Hamacabim 14, Modiin', 0, 0, 3,3)
+INSERT INTO CurrentToilets Values('Ganot 12, Rishon', 1, 1, 3,4)
+INSERT INTO CurrentToilets Values('Navon 2, Yavne', 0, 2, 3,5)
 
 Go
 INSERT INTO Rates Values(3, 1)
