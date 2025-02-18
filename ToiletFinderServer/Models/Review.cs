@@ -8,15 +8,17 @@ namespace ToiletFinderServer.Models;
 
 public partial class Review
 {
+    [Key]
+    public int ReviewId { get; set; }
+
     [Column("Review")]
     [StringLength(250)]
     public string? Review1 { get; set; }
 
-    [Key]
     [Column("ToiletID")]
     public int ToiletId { get; set; }
 
     [ForeignKey("ToiletId")]
-    [InverseProperty("Review")]
+    [InverseProperty("Reviews")]
     public virtual CurrentToilet Toilet { get; set; } = null!;
 }

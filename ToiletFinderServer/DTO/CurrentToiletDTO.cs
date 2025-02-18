@@ -9,10 +9,11 @@ namespace ToiletFinderServer.DTO
         public bool? Accessibility { get; set; }
         public double? Price { get; set; }
         public int? StatusID { get; set; }
-        //public Rate? Rate { get; set; }
-        //public Review? Review { get; set; }
+        public double Rate { get; set; }
+
 
         public List<CurrentToiletPhotoDTO> Photos { get; set; }
+        public List<ReviewDTO> Reviews { get; set; }
 
         public CurrentToiletDTO() { }
 
@@ -24,9 +25,8 @@ namespace ToiletFinderServer.DTO
             m.Tlocation = Tlocation;
             m.Accessibility = Accessibility;
             m.Price = Price;
+
             m.StatusId = StatusID;
-            //m.Rate = Rate;
-            //m.Review = Review;
             m.CurrentToiletsPhotos = new List<Models.CurrentToiletsPhoto>();
             if (this.Photos != null)
             {
@@ -48,8 +48,12 @@ namespace ToiletFinderServer.DTO
             this.Accessibility = modelToilet.Accessibility;
             this.Price = modelToilet.Price;
             this.StatusID = modelToilet.StatusId;
-            //this.Rate = modelToilet.Rate;
-            //this.Review = modelToilet.Review;
+            this.Rate = modelToilet.Rates.Average(r => r.Rate1).GetValueOrDefault();
+            this.Reviews = new List<ReviewDTO>();
+            foreach (Models.Review r in modelToilet.Reviews)
+            {
+                this.Reviews.Add(new ReviewDTO(r));
+            }
             this.Photos = new List<CurrentToiletPhotoDTO>();
             if (modelToilet.CurrentToiletsPhotos != null)
             {

@@ -58,15 +58,17 @@ CREATE TABLE CurrentToiletsPhotos (
 
 -- יצירת טבלת דירוגים
 CREATE TABLE Rates (
+    Id INT identity primary key,
     Rate INT,                                 -- הדירוג
-    ToiletID INT PRIMARY KEY,                 -- מפתח משני וראשי מזהה שירותים
+    ToiletID INT not null,                 -- מפתח משני וראשי מזהה שירותים
     FOREIGN KEY (ToiletId) REFERENCES CurrentToilets(ToiletId),  -- קישור לטבלת השירותים
 )
 
 -- יצירת טבלת ביקורות
 CREATE TABLE Reviews (
+    ReviewId INT identity primary key,
     Review NVARCHAR(250),                           -- הביקורת
-    ToiletID INT PRIMARY KEY,                  -- מפתח משני וראשי מזהה שירותים
+    ToiletID INT not null,                  -- מפתח משני וראשי מזהה שירותים
     FOREIGN KEY (ToiletId) REFERENCES CurrentToilets(ToiletId),  -- קישור לטבלת השירותים
 )
 

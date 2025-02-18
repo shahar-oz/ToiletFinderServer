@@ -13,27 +13,33 @@ namespace ToiletFinderServer.Models
         public CurrentToilet? GetToilet(int id)
         {
             return this.CurrentToilets.Where(t => t.ToiletId == id)
-                .Include(t => t.CurrentToiletsPhotos).FirstOrDefault();
+                .Include(t => t.CurrentToiletsPhotos)
+                .Include(t => t.Rates)
+                .Include(t=>t.Reviews).FirstOrDefault();
         }
 
         //gets all toilets by status
 
         public List<CurrentToilet>? GetAllToiletsByStatus(int i)
         {
-            return this.CurrentToilets.Where(u => u.StatusId == i).ToList();
+            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Include(t => t.Rates)
+                .Include(t => t.Reviews).Where(u => u.StatusId == i).ToList();
         }
         //gets all approved toilets
         public List<CurrentToilet>? GetAllApprovedToilets()
         {
-            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Where(u => u.StatusId == 1).ToList();
+            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Include(t => t.Rates)
+                .Include(t => t.Reviews).Where(u => u.StatusId == 1).ToList();
         }
         public List<CurrentToilet>? GetAllPendingToilets()
         {
-            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Where(u => u.StatusId == 2).ToList();
+            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Include(t => t.Rates)
+                .Include(t => t.Reviews).Where(u => u.StatusId == 2).ToList();
         }
         public List<CurrentToilet>? GetAllDeclinedToilets()
         {
-            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Where(u => u.StatusId == 3).ToList();
+            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Include(t => t.Rates)
+                .Include(t => t.Reviews).Where(u => u.StatusId == 3).ToList();
         }
         public bool SetStatus(int toiletId, int statusId)
         {
@@ -58,13 +64,15 @@ namespace ToiletFinderServer.Models
 
         public List<CurrentToilet?> GetToiletByUser(int userID)
         {
-            return this.CurrentToilets.Where(r => r.UserId == userID).ToList();
+            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Include(t => t.Rates)
+                .Include(t => t.Reviews).Where(r => r.UserId == userID).ToList();
         }
 
         //gets all toilets
         public List<CurrentToilet>? GetAllToilets()
         {
-            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).ToList();
+            return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Include(t => t.Rates)
+                .Include(t => t.Reviews).ToList();
         }
 
         

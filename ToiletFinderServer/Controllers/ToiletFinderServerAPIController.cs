@@ -268,29 +268,33 @@ namespace ToiletFinderServer.Controllers
             }
         }
 
-        //[HttpGet("GetToiletByUser")]
-        //public IActionResult GetToiletByUser([FromQuery] int userID)
-        //{
-        //    try
-        //    {
-        //        //validate its a service provider 
-        //        string? username = HttpContext.Session.GetString("loggedInUser");
-        //        if (username == null)
-        //            return Unauthorized();
-        //        User? u = context.GetUser(username);
-        //        if (u == null || u.UserId != 2)
-        //            return Unauthorized();
-        //        List<Models.CurrentToilet> listToilets = context.GetToiletByUser(userID);
-        //        List<DTO.CurrentToiletDTO> final = new List<CurrentToiletDTO>();
-               
-        //        return Ok(final);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
+        [HttpGet("GetToiletByUser")]
+        public IActionResult GetToiletByUser([FromQuery] int userID)
+        {
+            try
+            {
+                //validate its a service provider 
+                string? email = HttpContext.Session.GetString("loggedInUser");
+                if (email == null)
+                    return Unauthorized();
+                User? u = context.GetUser(email);
+                if (u == null || u.UserType != 2)
+                    return Unauthorized();
+                List<Models.CurrentToilet> listToilets = context.GetToiletByUser(userID);
+                List<DTO.CurrentToiletDTO> final = new List<CurrentToiletDTO>();
+                foreach(CurrentToilet t in listToilets)
+                {
+                    final.Add(new DTO.CurrentToiletDTO(t, this.webHostEnvironment.WebRootPath));
+                }
 
-        //}
+                return Ok(final);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
 
         #region Change Status 
         //change status

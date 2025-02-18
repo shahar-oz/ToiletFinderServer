@@ -28,10 +28,10 @@ public partial class CurrentToilet
     public virtual ICollection<CurrentToiletsPhoto> CurrentToiletsPhotos { get; set; } = new List<CurrentToiletsPhoto>();
 
     [InverseProperty("Toilet")]
-    public virtual Rate? Rate { get; set; }
+    public virtual ICollection<Rate> Rates { get; set; } = new List<Rate>();
 
     [InverseProperty("Toilet")]
-    public virtual Review? Review { get; set; }
+    public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
 
     [ForeignKey("StatusId")]
     [InverseProperty("CurrentToilets")]
