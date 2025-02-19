@@ -10,6 +10,7 @@ namespace ToiletFinderServer.DTO
         public double? Price { get; set; }
         public int? StatusID { get; set; }
         public double Rate { get; set; }
+        public int? UserId { get; set; }
 
 
         public List<CurrentToiletPhotoDTO> Photos { get; set; }
@@ -49,6 +50,7 @@ namespace ToiletFinderServer.DTO
             this.Price = modelToilet.Price;
             this.StatusID = modelToilet.StatusId;
             this.Rate = modelToilet.Rates.Average(r => r.Rate1).GetValueOrDefault();
+            this.UserId = modelToilet.UserId;
             this.Reviews = new List<ReviewDTO>();
             foreach (Models.Review r in modelToilet.Reviews)
             {
