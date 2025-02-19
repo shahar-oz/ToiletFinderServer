@@ -296,6 +296,55 @@ namespace ToiletFinderServer.Controllers
 
         }
 
+        [HttpPost("addRateandReview")]
+        public IActionResult AddRateandReview([FromQuery] int toiletId, [FromQuery] int rate, [FromBody] string reviewText)
+        {
+            try
+            {
+                // Check if user is logged in
+                //validate its a service provider 
+                string? email = HttpContext.Session.GetString("loggedInUser");
+                if (email == null)
+                    return Unauthorized();
+                User? u = context.GetUser(email);
+                if (u == null || u.UserType != 1)
+                    return Unauthorized();
+
+
+                // Get toilet from database
+                Models.CurrentToilet? toilet = context.GetToilet(toiletId);
+                if (toilet == null)
+                {
+                    return NotFound("Toilet not found in the database");
+                }
+
+                // Add new review to database
+                Models.Review newReview = new Models.Review()
+                {
+                    ToiletId = toiletId,
+                    Review1 = reviewText
+                };
+                context.Reviews.Add(newReview);
+
+                // Add new rating to database
+                Models.Rate newRate = new Models.Rate()
+                {
+                    ToiletId = toiletId,
+                    Rate1 = rate
+                };
+                context.Rates.Add(newRate);
+
+                context.SaveChanges();
+
+                // Return updated toilet with new reviews and rates
+                DTO.CurrentToiletDTO updatedToilet = new DTO.CurrentToiletDTO(toilet, webHostEnvironment.WebRootPath);
+                return Ok(updatedToilet);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         #region Change Status 
         //change status
         [HttpPost("ChangeStatusToApprove")]
