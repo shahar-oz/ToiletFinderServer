@@ -109,6 +109,8 @@ namespace ToiletFinderServer.Controllers
 
         }
 
+
+
         [HttpPost("UploadToiletImage")]
         public async Task<IActionResult> UploadToiletImageAsync(IFormFile file, [FromQuery] int toiletId)
         {

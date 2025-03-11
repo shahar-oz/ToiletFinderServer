@@ -26,7 +26,7 @@ namespace ToiletFinderServer.DTO
             m.Tlocation = Tlocation;
             m.Accessibility = Accessibility;
             m.Price = Price;
-
+            m.UserId = UserId;
             m.StatusId = StatusID;
             m.CurrentToiletsPhotos = new List<Models.CurrentToiletsPhoto>();
             if (this.Photos != null)
