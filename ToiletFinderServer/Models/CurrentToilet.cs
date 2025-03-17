@@ -22,6 +22,14 @@ public partial class CurrentToilet
     [Column("StatusID")]
     public int? StatusId { get; set; }
 
+    [Column("GoogleMapsID")]
+    [StringLength(100)]
+    public string GoogleMapsId { get; set; } = null!;
+
+    public double Latitude { get; set; }
+
+    public double Longitude { get; set; }
+
     public int? UserId { get; set; }
 
     [InverseProperty("Toilet")]

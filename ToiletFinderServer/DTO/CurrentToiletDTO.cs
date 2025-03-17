@@ -1,4 +1,5 @@
-﻿using ToiletFinderServer.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using ToiletFinderServer.Models;
 
 namespace ToiletFinderServer.DTO
 {
@@ -11,7 +12,11 @@ namespace ToiletFinderServer.DTO
         public int? StatusID { get; set; }
         public double Rate { get; set; }
         public int? UserId { get; set; }
+        public string GoogleMapsId { get; set; }
 
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
 
         public List<CurrentToiletPhotoDTO> Photos { get; set; }
         public List<ReviewDTO> Reviews { get; set; }
@@ -29,6 +34,9 @@ namespace ToiletFinderServer.DTO
             m.UserId = UserId;
             m.StatusId = StatusID;
             m.CurrentToiletsPhotos = new List<Models.CurrentToiletsPhoto>();
+            m.GoogleMapsId = GoogleMapsId;
+            m.Longitude = Longitude;
+            m.Latitude = Latitude;
             if (this.Photos != null)
             {
                 foreach(var photo in this.Photos)
@@ -51,6 +59,9 @@ namespace ToiletFinderServer.DTO
             this.StatusID = modelToilet.StatusId;
             this.Rate = modelToilet.Rates.Average(r => r.Rate1).GetValueOrDefault();
             this.UserId = modelToilet.UserId;
+            this.GoogleMapsId = modelToilet.GoogleMapsId;
+            this.Longitude = modelToilet.Longitude;
+            this.Latitude = modelToilet.Latitude;
             this.Reviews = new List<ReviewDTO>();
             foreach (Models.Review r in modelToilet.Reviews)
             {
