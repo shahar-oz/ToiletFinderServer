@@ -12,7 +12,7 @@ public partial class CurrentToilet
     public int ToiletId { get; set; }
 
     [Column("TLocation")]
-    [StringLength(100)]
+    [StringLength(1000)]
     public string? Tlocation { get; set; }
 
     public bool? Accessibility { get; set; }
@@ -23,7 +23,7 @@ public partial class CurrentToilet
     public int? StatusId { get; set; }
 
     [Column("GoogleMapsID")]
-    [StringLength(100)]
+    [StringLength(1000)]
     public string GoogleMapsId { get; set; } = null!;
 
     public double Latitude { get; set; }

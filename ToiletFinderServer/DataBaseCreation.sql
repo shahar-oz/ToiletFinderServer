@@ -1,4 +1,4 @@
-﻿Use master
+﻿    Use master
 Go
 IF EXISTS (SELECT * FROM sys.databases WHERE name = N'ToiletFinder_DB')
 BEGIN
@@ -37,11 +37,11 @@ CREATE TABLE Users (
 -- יצירת טבלת שירותים קיימים  
 CREATE TABLE CurrentToilets (
     ToiletId INT PRIMARY KEY identity,        -- מפתח ראשי
-    TLocation NVARCHAR(100),                  -- מיקום
+    TLocation NVARCHAR(1000),                  -- מיקום
     Accessibility BIT,                        -- נגישות
     Price FLOAT,                              -- מחיר
     StatusID INT,                                      -- מפתח משני, סטטוס
-    GoogleMapsID NVARCHAR(100) not null,
+    GoogleMapsID NVARCHAR(1000) not null,
     Latitude float not null,
     Longitude float not null,
 FOREIGN KEY (StatusID) REFERENCES Statuses(StatusID),
