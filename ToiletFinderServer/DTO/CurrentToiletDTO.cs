@@ -12,6 +12,7 @@ namespace ToiletFinderServer.DTO
         public int? StatusID { get; set; }
         public double Rate { get; set; }
         public int? UserId { get; set; }
+        public UserDTO? User { get; set; }
         public string GoogleMapsId { get; set; }
 
         public double Latitude { get; set; }
@@ -48,6 +49,7 @@ namespace ToiletFinderServer.DTO
                     });
                 }
             }
+            
             return m;
         }
         public CurrentToiletDTO(Models.CurrentToilet modelToilet, string photoBasePath)
@@ -78,6 +80,10 @@ namespace ToiletFinderServer.DTO
                         PhotoUrlPath = GetToiletPhotoPath(p.PhotoId, photoBasePath)
                     });
                 }
+            }
+            if (modelToilet.User != null)
+            {
+                this.User = new UserDTO(modelToilet.User);
             }
         }
         private string GetToiletPhotoPath(int photoId, string photoBasePath)

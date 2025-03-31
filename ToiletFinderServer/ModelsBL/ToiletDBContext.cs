@@ -23,23 +23,23 @@ namespace ToiletFinderServer.Models
         public List<CurrentToilet>? GetAllToiletsByStatus(int i)
         {
             return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Include(t => t.Rates)
-                .Include(t => t.Reviews).Where(u => u.StatusId == i).ToList();
+                .Include(t => t.Reviews).Include(t=>t.User).Where(u => u.StatusId == i).ToList();
         }
         //gets all approved toilets
         public List<CurrentToilet>? GetAllApprovedToilets()
         {
             return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Include(t => t.Rates)
-                .Include(t => t.Reviews).Where(u => u.StatusId == 1).ToList();
+                .Include(t => t.Reviews).Include(t => t.User).Where(u => u.StatusId == 1).ToList();
         }
         public List<CurrentToilet>? GetAllPendingToilets()
         {
             return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Include(t => t.Rates)
-                .Include(t => t.Reviews).Where(u => u.StatusId == 2).ToList();
+                .Include(t => t.Reviews).Include(t => t.User).Where(u => u.StatusId == 2).ToList();
         }
         public List<CurrentToilet>? GetAllDeclinedToilets()
         {
             return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Include(t => t.Rates)
-                .Include(t => t.Reviews).Where(u => u.StatusId == 3).ToList();
+                .Include(t => t.Reviews).Include(t => t.User).Where(u => u.StatusId == 3).ToList();
         }
         public bool SetStatus(int toiletId, int statusId)
         {
@@ -65,14 +65,14 @@ namespace ToiletFinderServer.Models
         public List<CurrentToilet?> GetToiletByUser(int userID)
         {
             return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Include(t => t.Rates)
-                .Include(t => t.Reviews).Where(r => r.UserId == userID).ToList();
+                .Include(t => t.Reviews).Include(t => t.User).Where(r => r.UserId == userID).ToList();
         }
 
         //gets all toilets
         public List<CurrentToilet>? GetAllToilets()
         {
             return this.CurrentToilets.Include(t => t.CurrentToiletsPhotos).Include(t => t.Rates)
-                .Include(t => t.Reviews).ToList();
+                .Include(t => t.Reviews).Include(t => t.User).ToList();
         }
 
         
