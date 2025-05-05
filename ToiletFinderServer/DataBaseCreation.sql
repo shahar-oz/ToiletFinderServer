@@ -102,7 +102,8 @@ GO
 
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Admin', 'Admin123', 'admin@gmail.com',  3)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('1', '1', '1',  3)
-INSERT INTO Users (Username, Pass, Email, UserType)  Values ('SP', 'SP', 'SP',  2)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Yoav Cohen', 'Yoav1', 'Yoav@gmail.com',  2)
+INSERT INTO Users (Username, Pass, Email, UserType)  Values ('Hadas Galon', 'Hadas2', 'hadas@gmail.com',  2)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('SP2', 'SP2', 'SP2',  2)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('SP3', 'SP3', 'SP3',  2)
 INSERT INTO Users (Username, Pass, Email, UserType)  Values ('User1', 'User1', 'User1',  1)
