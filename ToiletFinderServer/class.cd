@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ToiletFinderServer.Models.CurrentToilet">
+    <Position X="11.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAABAEAsAUAAAAAAAAAIEAgAAAgAACCAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CurrentToilet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToiletFinderServer.Models.CurrentToiletsPhoto">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAACAAAAACAAAAAAA=</HashCode>
+      <FileName>Models\CurrentToiletsPhoto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToiletFinderServer.Models.Rate">
+    <Position X="9.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAQAAAAAAAAAAAAAAACAAAAAACAAAAAA=</HashCode>
+      <FileName>Models\Rate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToiletFinderServer.Models.Review">
+    <Position X="9.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAEAAAAAAAAAACAAEAAAAAAAAAA=</HashCode>
+      <FileName>Models\Review.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToiletFinderServer.Models.Status">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAEAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Status.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToiletFinderServer.Models.ToiletDBContext">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAEmAAAYAQgAAEAAAIEAAAUAgAEAAAEAAABAAAAAE=</HashCode>
+      <FileName>Models\ToiletDBContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToiletFinderServer.Models.User">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACQAAAAAAQAIAAgAAAAACAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToiletFinderServer.Models.Utype">
+    <Position X="13" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Utype.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
