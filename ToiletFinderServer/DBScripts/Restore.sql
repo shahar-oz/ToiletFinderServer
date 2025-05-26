@@ -67,8 +67,6 @@ Go
                ORDER BY backup_start_date DESC;
                 ALTER DATABASE ToiletFinder_DB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
                 RESTORE DATABASE ToiletFinder_DB FROM DISK = 'C:\Users\User\source\repos\shahar-oz\ToiletFinderServer\ToiletFinderServer\wwwroot\..\DBScripts\backup.bak' 
-                WITH FILE=@latestBackupSet,
-                REPLACE;
+                WITH REPLACE;
                 ALTER DATABASE ToiletFinder_DB SET MULTI_USER;
 
-                
