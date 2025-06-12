@@ -35,7 +35,7 @@ CREATE Database ToiletFinder_DB;
 Go
 
 
-
+drop login [TaskAdminLogin]
 -- Create a login for the admin user
 CREATE LOGIN [TaskAdminLogin] WITH PASSWORD = 'ShaharAdmin';
 Go
@@ -45,6 +45,7 @@ Go
 
 Use ToiletFinder_DB
 Go
+drop user [TaskAdminUser]
 -- Create a user in the TamiDB database for the login
 CREATE USER [TaskAdminUser] FOR LOGIN [TaskAdminLogin];
 Go
